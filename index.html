@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Img2PDF - Free Image to PDF Converter</title>
+  <meta
+    name="description"
+    content="Convert JPG and PNG images into PDF online for free. Perfect for students, assignments, screenshots, and document uploads."
+  />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="logo">Img2PDF</a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="hero-badge">Free • Fast • Student Friendly</div>
+      <h1>Convert Images to PDF Quickly and Easily</h1>
+      <p class="hero-text">
+        A clean and simple online tool that helps students and everyday users
+        combine JPG and PNG images into one PDF file in seconds.
+      </p>
+
+      <div class="hero-points">
+        <span>No sign up required</span>
+        <span>Works in your browser</span>
+        <span>Useful for assignments and screenshots</span>
+      </div>
+    </section>
+
+    <section class="container tool-card">
+      <div class="upload-section">
+        <label for="imageInput" class="upload-box">
+          <span class="upload-icon">📁</span>
+          <span class="upload-text">Click to choose images</span>
+          <span class="upload-subtext">Supported formats: JPG, JPEG, PNG</span>
+        </label>
+
+        <input
+          type="file"
+          id="imageInput"
+          accept="image/png, image/jpeg, image/jpg"
+          multiple
+          hidden
+        />
+
+        <div class="options">
+          <div class="input-group">
+            <label for="pdfName">PDF file name</label>
+            <input type="text" id="pdfName" placeholder="my-images" />
+          </div>
+
+          <div class="input-group">
+            <label for="pageSize">Page size</label>
+            <select id="pageSize">
+              <option value="a4">A4</option>
+              <option value="letter">Letter</option>
+              <option value="fit">Fit to image</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button id="convertBtn">Convert to PDF</button>
+          <button id="clearBtn" class="secondary">Clear All</button>
+        </div>
+
+        <p class="note">
+          Your selected images are prepared in the same order shown below.
+        </p>
+      </div>
+
+      <div class="preview-section">
+        <div class="section-top">
+          <h2>Selected Images</h2>
+          <span id="imageCount">0 images</span>
+        </div>
+
+        <div id="previewGrid" class="preview-grid"></div>
+        <p id="message" class="message"></p>
+      </div>
+    </section>
+
+    <section class="container content-section">
+      <div class="section-heading">
+        <h2>How to Use</h2>
+        <p>Just follow these simple steps.</p>
+      </div>
+
+      <div class="step-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Select Your Images</h3>
+          <p>Choose one or more JPG or PNG images from your device.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Set Your PDF Options</h3>
+          <p>Enter a file name and choose your preferred page size.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Convert and Download</h3>
+          <p>Click the convert button and download your PDF instantly.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container content-section">
+      <div class="section-heading">
+        <h2>Why Choose Img2PDF</h2>
+        <p>Built to stay simple, fast, and useful.</p>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Perfect for Students</h3>
+          <p>
+            Great for homework, assignment photos, screenshots, handwritten work,
+            and university submissions.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h3>Simple Interface</h3>
+          <p>
+            No complicated dashboard, no account creation, and no confusing
+            settings.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h3>Quick Results</h3>
+          <p>
+            Upload your images, convert them into one PDF, and download the file
+            in a few clicks.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container content-section">
+      <div class="section-heading">
+        <h2>Who Is This Tool For?</h2>
+        <p>Anyone who needs a quick PDF from images.</p>
+      </div>
+
+      <div class="audience-grid">
+        <div class="audience-card">University Students</div>
+        <div class="audience-card">School Students</div>
+        <div class="audience-card">Teachers</div>
+        <div class="audience-card">Office Workers</div>
+        <div class="audience-card">Freelancers</div>
+        <div class="audience-card">Everyday Users</div>
+      </div>
+    </section>
+
+    <section class="container content-section">
+      <div class="section-heading">
+        <h2>Helpful Articles</h2>
+        <p>Useful guides for students and everyday users.</p>
+      </div>
+
+      <div class="article-grid">
+        <a class="article-card" href="articles/university-submissions.html">
+          <h3>How to Convert Images to PDF for University Submissions</h3>
+          <p>Learn how students can prepare cleaner PDF files before deadlines.</p>
+        </a>
+
+        <a class="article-card" href="articles/combine-screenshots.html">
+          <h3>How to Combine Screenshots into One PDF</h3>
+          <p>Turn multiple screenshots into one organized PDF document.</p>
+        </a>
+
+        <a class="article-card" href="articles/best-image-formats.html">
+          <h3>Best Image Formats for PDF Upload</h3>
+          <p>Understand when JPG and PNG are the better choice.</p>
+        </a>
+
+        <a class="article-card" href="articles/how-to-organize-images-before-converting.html">
+          <h3>How to Organize Images Before Converting to PDF</h3>
+          <p>Simple tips to keep your PDF pages in the right order.</p>
+        </a>
+
+        <a class="article-card" href="articles/common-pdf-upload-mistakes.html">
+          <h3>Common PDF Upload Mistakes to Avoid</h3>
+          <p>Prevent simple mistakes before submitting your files.</p>
+        </a>
+
+        <a class="article-card" href="articles/free-image-to-pdf-website.html">
+          <h3>Why a Free Image to PDF Website Is Useful</h3>
+          <p>See why this tool matters for students and quick everyday tasks.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="container content-section">
+      <div class="section-heading">
+        <h2>Quick Questions</h2>
+        <p>A few common things users ask first.</p>
+      </div>
+
+      <div class="faq-preview">
+        <div class="faq-item">
+          <h3>Is this tool free to use?</h3>
+          <p>Yes, Img2PDF is free to use.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Do I need an account?</h3>
+          <p>No, you can use the tool without signing up.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Which formats are supported?</h3>
+          <p>JPG, JPEG, and PNG are supported best.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>© 2026 Img2PDF. All rights reserved.</p>
+
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
