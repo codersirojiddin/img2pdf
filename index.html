@@ -9,14 +9,30 @@
     content="Convert JPG and PNG images into PDF online for free. Perfect for students, assignments, screenshots, and document uploads."
   />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="ui.css" />
   <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav">
-      <a href="index.html" class="logo">Img2PDF</a>
+  <div class="page-noise"></div>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
 
-      <nav class="nav-links">
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-logo">Img2PDF</div>
+      <div class="preloader-line"></div>
+    </div>
+  </div>
+
+  <header class="site-header premium-header" id="siteHeader">
+    <div class="container nav">
+      <a href="index.html" class="logo premium-logo">
+        <span class="logo-dot"></span>
+        <span>Img2PDF</span>
+      </a>
+
+      <nav class="nav-links premium-nav">
         <a href="index.html" class="active">Home</a>
         <a href="about.html">About</a>
         <a href="faq.html">FAQ</a>
@@ -26,27 +42,87 @@
   </header>
 
   <main>
-    <section class="hero container">
-      <div class="hero-badge">Free • Fast • Student Friendly</div>
-      <h1>Convert Images to PDF Quickly and Easily</h1>
-      <p class="hero-text">
-        A clean and simple online tool that helps students and everyday users
-        combine JPG and PNG images into one PDF file in seconds.
-      </p>
+    <section class="hero container premium-hero">
+      <div class="hero-grid">
+        <div class="hero-left" data-reveal="up">
+          <div class="hero-badge premium-badge">Free • Fast • Student Friendly</div>
 
-      <div class="hero-points">
-        <span>No sign up required</span>
-        <span>Works in your browser</span>
-        <span>Useful for assignments and screenshots</span>
+          <h1 class="hero-title">
+            Convert Images to PDF
+            <span class="gradient-text">Beautifully. Instantly.</span>
+          </h1>
+
+          <p class="hero-text">
+            A clean and powerful image to PDF converter built for students and everyday users.
+            Upload your JPG or PNG files, organize them, and download one polished PDF in seconds.
+          </p>
+
+          <div class="hero-points premium-points">
+            <span>No sign up required</span>
+            <span>Works in your browser</span>
+            <span>Perfect for assignments</span>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#toolSection" class="hero-btn primary-btn">Start Converting</a>
+            <a href="#howToUse" class="hero-btn secondary-btn-outline">See How It Works</a>
+          </div>
+
+          <div class="hero-mini-stats">
+            <div class="mini-stat">
+              <strong>Fast</strong>
+              <span>Conversion flow</span>
+            </div>
+            <div class="mini-stat">
+              <strong>Clean</strong>
+              <span>Premium interface</span>
+            </div>
+            <div class="mini-stat">
+              <strong>Simple</strong>
+              <span>No extra steps</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-right" data-reveal="left" data-delay="120">
+          <div class="hero-showcase tilt-card">
+            <div class="showcase-topbar">
+              <span></span><span></span><span></span>
+            </div>
+
+            <div class="showcase-content">
+              <div class="mock-upload-card">
+                <div class="mock-icon">📄</div>
+                <div>
+                  <h3>Image to PDF</h3>
+                  <p>Fast conversion with a clean workflow</p>
+                </div>
+              </div>
+
+              <div class="mock-stack">
+                <div class="mock-paper paper-1"></div>
+                <div class="mock-paper paper-2"></div>
+                <div class="mock-paper paper-3"></div>
+              </div>
+
+              <div class="mock-badges">
+                <span>JPG</span>
+                <span>PNG</span>
+                <span>PDF</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="container tool-card">
+    <section class="container tool-card premium-tool-card tilt-card" id="toolSection" data-reveal="up">
       <div class="upload-section">
-        <label for="imageInput" class="upload-box">
+        <label for="imageInput" class="upload-box premium-upload-box">
           <span class="upload-icon">📁</span>
           <span class="upload-text">Click to choose images</span>
           <span class="upload-subtext">Supported formats: JPG, JPEG, PNG</span>
+          <span class="upload-glow"></span>
         </label>
 
         <input
@@ -57,13 +133,13 @@
           hidden
         />
 
-        <div class="options">
-          <div class="input-group">
+        <div class="options premium-options">
+          <div class="input-group premium-input-group">
             <label for="pdfName">PDF file name</label>
             <input type="text" id="pdfName" placeholder="my-images" />
           </div>
 
-          <div class="input-group">
+          <div class="input-group premium-input-group">
             <label for="pageSize">Page size</label>
             <select id="pageSize">
               <option value="a4">A4</option>
@@ -73,18 +149,18 @@
           </div>
         </div>
 
-        <div class="buttons">
-          <button id="convertBtn">Convert to PDF</button>
+        <div class="buttons premium-buttons">
+          <button id="convertBtn" class="glow-btn">Convert to PDF</button>
           <button id="clearBtn" class="secondary">Clear All</button>
         </div>
 
-        <p class="note">
+        <p class="note premium-note">
           Your selected images are prepared in the same order shown below.
         </p>
       </div>
 
       <div class="preview-section">
-        <div class="section-top">
+        <div class="section-top premium-section-top">
           <h2>Selected Images</h2>
           <span id="imageCount">0 images</span>
         </div>
@@ -93,60 +169,66 @@
         <p id="message" class="message"></p>
       </div>
     </section>
-    <section class="container content-section">
-  <div class="section-heading">
-    <h2>More Free PDF Tools</h2>
-    <p>Explore other useful tools on Img2PDF.</p>
-  </div>
 
-  <div class="article-grid">
-    <a class="article-card" href="pdf-to-jpg.html">
-      <h3>PDF to JPG</h3>
-      <p>Convert PDF pages into JPG images online.</p>
-    </a>
+    <section class="container content-section" data-reveal="up" data-delay="40">
+      <div class="section-heading">
+        <h2>More Free PDF Tools</h2>
+        <p>Explore other useful tools on Img2PDF.</p>
+      </div>
 
-    <a class="article-card" href="merge-pdf.html">
-      <h3>Merge PDF</h3>
-      <p>Combine multiple PDF files into one document.</p>
-    </a>
+      <div class="article-grid premium-grid">
+        <a class="article-card premium-card tilt-card" href="pdf-to-jpg.html">
+          <div class="card-icon">🖼️</div>
+          <h3>PDF to JPG</h3>
+          <p>Convert PDF pages into JPG images online.</p>
+        </a>
 
-    <a class="article-card" href="split-pdf.html">
-      <h3>Split PDF</h3>
-      <p>Extract pages and split large PDF files.</p>
-    </a>
+        <a class="article-card premium-card tilt-card" href="merge-pdf.html">
+          <div class="card-icon">🧩</div>
+          <h3>Merge PDF</h3>
+          <p>Combine multiple PDF files into one document.</p>
+        </a>
 
-    <a class="article-card" href="compress-pdf.html">
-      <h3>Compress PDF</h3>
-      <p>Reduce PDF file size for easy upload and sharing.</p>
-    </a>
+        <a class="article-card premium-card tilt-card" href="split-pdf.html">
+          <div class="card-icon">✂️</div>
+          <h3>Split PDF</h3>
+          <p>Extract pages and split large PDF files.</p>
+        </a>
 
-    <a class="article-card" href="png-to-pdf.html">
-      <h3>PNG to PDF</h3>
-      <p>Turn PNG images into one PDF file online.</p>
-    </a>
-  </div>
-</section>
+        <a class="article-card premium-card tilt-card" href="compress-pdf.html">
+          <div class="card-icon">🗜️</div>
+          <h3>Compress PDF</h3>
+          <p>Reduce PDF file size for easy upload and sharing.</p>
+        </a>
 
-    <section class="container content-section">
+        <a class="article-card premium-card tilt-card" href="png-to-pdf.html">
+          <div class="card-icon">📦</div>
+          <h3>PNG to PDF</h3>
+          <p>Turn PNG images into one PDF file online.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="container content-section" id="howToUse" data-reveal="up">
       <div class="section-heading">
         <h2>How to Use</h2>
         <p>Just follow these simple steps.</p>
       </div>
 
-      <div class="step-grid">
-        <div class="step-card">
+      <div class="step-grid premium-step-grid">
+        <div class="step-card premium-card tilt-card">
           <div class="step-number">1</div>
           <h3>Select Your Images</h3>
           <p>Choose one or more JPG or PNG images from your device.</p>
         </div>
 
-        <div class="step-card">
+        <div class="step-card premium-card tilt-card">
           <div class="step-number">2</div>
           <h3>Set Your PDF Options</h3>
           <p>Enter a file name and choose your preferred page size.</p>
         </div>
 
-        <div class="step-card">
+        <div class="step-card premium-card tilt-card">
           <div class="step-number">3</div>
           <h3>Convert and Download</h3>
           <p>Click the convert button and download your PDF instantly.</p>
@@ -154,14 +236,15 @@
       </div>
     </section>
 
-    <section class="container content-section">
+    <section class="container content-section" data-reveal="up">
       <div class="section-heading">
         <h2>Why Choose Img2PDF</h2>
         <p>Built to stay simple, fast, and useful.</p>
       </div>
 
-      <div class="info-grid">
-        <div class="info-card">
+      <div class="info-grid premium-grid">
+        <div class="info-card premium-card tilt-card">
+          <div class="card-icon">🎓</div>
           <h3>Perfect for Students</h3>
           <p>
             Great for homework, assignment photos, screenshots, handwritten work,
@@ -169,7 +252,8 @@
           </p>
         </div>
 
-        <div class="info-card">
+        <div class="info-card premium-card tilt-card">
+          <div class="card-icon">✨</div>
           <h3>Simple Interface</h3>
           <p>
             No complicated dashboard, no account creation, and no confusing
@@ -177,7 +261,8 @@
           </p>
         </div>
 
-        <div class="info-card">
+        <div class="info-card premium-card tilt-card">
+          <div class="card-icon">⚡</div>
           <h3>Quick Results</h3>
           <p>
             Upload your images, convert them into one PDF, and download the file
@@ -187,79 +272,85 @@
       </div>
     </section>
 
-    <section class="container content-section">
+    <section class="container content-section" data-reveal="up">
       <div class="section-heading">
         <h2>Who Is This Tool For?</h2>
         <p>Anyone who needs a quick PDF from images.</p>
       </div>
 
-      <div class="audience-grid">
-        <div class="audience-card">University Students</div>
-        <div class="audience-card">School Students</div>
-        <div class="audience-card">Teachers</div>
-        <div class="audience-card">Office Workers</div>
-        <div class="audience-card">Freelancers</div>
-        <div class="audience-card">Everyday Users</div>
+      <div class="audience-grid premium-grid">
+        <div class="audience-card premium-card tilt-card">University Students</div>
+        <div class="audience-card premium-card tilt-card">School Students</div>
+        <div class="audience-card premium-card tilt-card">Teachers</div>
+        <div class="audience-card premium-card tilt-card">Office Workers</div>
+        <div class="audience-card premium-card tilt-card">Freelancers</div>
+        <div class="audience-card premium-card tilt-card">Everyday Users</div>
       </div>
     </section>
 
-    <section class="container content-section">
+    <section class="container content-section" data-reveal="up">
       <div class="section-heading">
         <h2>Helpful Articles</h2>
         <p>Useful guides for students and everyday users.</p>
       </div>
 
-      <div class="article-grid">
-        <a class="article-card" href="articles/university-submissions.html">
+      <div class="article-grid premium-grid">
+        <a class="article-card premium-card tilt-card" href="articles/university-submissions.html">
+          <div class="card-icon">📚</div>
           <h3>How to Convert Images to PDF for University Submissions</h3>
           <p>Learn how students can prepare cleaner PDF files before deadlines.</p>
         </a>
 
-        <a class="article-card" href="articles/combine-screenshots.html">
+        <a class="article-card premium-card tilt-card" href="articles/combine-screenshots.html">
+          <div class="card-icon">🖥️</div>
           <h3>How to Combine Screenshots into One PDF</h3>
           <p>Turn multiple screenshots into one organized PDF document.</p>
         </a>
 
-        <a class="article-card" href="articles/best-image-formats.html">
+        <a class="article-card premium-card tilt-card" href="articles/best-image-formats.html">
+          <div class="card-icon">🧠</div>
           <h3>Best Image Formats for PDF Upload</h3>
           <p>Understand when JPG and PNG are the better choice.</p>
         </a>
 
-        <a class="article-card" href="articles/how-to-organize-images-before-converting.html">
+        <a class="article-card premium-card tilt-card" href="articles/how-to-organize-images-before-converting.html">
+          <div class="card-icon">🗂️</div>
           <h3>How to Organize Images Before Converting to PDF</h3>
           <p>Simple tips to keep your PDF pages in the right order.</p>
         </a>
 
-        <a class="article-card" href="articles/common-pdf-upload-mistakes.html">
+        <a class="article-card premium-card tilt-card" href="articles/common-pdf-upload-mistakes.html">
+          <div class="card-icon">⚠️</div>
           <h3>Common PDF Upload Mistakes to Avoid</h3>
           <p>Prevent simple mistakes before submitting your files.</p>
         </a>
 
-        <a class="article-card" href="articles/free-image-to-pdf-website.html">
+        <a class="article-card premium-card tilt-card" href="articles/free-image-to-pdf-website.html">
+          <div class="card-icon">🌐</div>
           <h3>Why a Free Image to PDF Website Is Useful</h3>
           <p>See why this tool matters for students and quick everyday tasks.</p>
         </a>
       </div>
     </section>
 
-    <section class="container content-section">
+    <section class="container content-section" data-reveal="up">
       <div class="section-heading">
         <h2>Quick Questions</h2>
         <p>A few common things users ask first.</p>
       </div>
 
-      <div class="faq-preview">
-        <div class="faq-item">
+      <div class="faq-preview premium-faq">
+        <div class="faq-item premium-card tilt-card">
           <h3>Is this tool free to use?</h3>
           <p>Yes, Img2PDF is free to use.</p>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item premium-card tilt-card">
           <h3>Do I need an account?</h3>
           <p>No, you can use the tool without signing up.</p>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item premium-card tilt-card">
           <h3>Which formats are supported?</h3>
           <p>JPG, JPEG, and PNG are supported best.</p>
         </div>
@@ -267,7 +358,7 @@
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer premium-footer">
     <div class="container footer-content">
       <p>© 2026 Img2PDF. All rights reserved.</p>
 
@@ -282,5 +373,6 @@
   </footer>
 
   <script src="app.js"></script>
+  <script src="ui.js"></script>
 </body>
 </html>
