@@ -1,39 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://yourusername.github.io/img2pdf/</loc>
-  </url>
-  <url>
-    <loc>https://yourusername.github.io/img2pdf/about.html</loc>
-  </url>
-  <url>
-    <loc>https://yourusername.github.io/img2pdf/contact.html</loc>
-  </url>
-  <url>
-    <loc>https://yourusername.github.io/img2pdf/faq.html</loc>
-  </url>
-  <url>
-    <loc>https://yourusername.github.io/img2pdf/privacy.html</loc>
-  </url>
-  <url>
-    <loc>https://yourusername.github.io/img2pdf/terms.html</loc>
-  </url>
-  <url>
-    <loc>https://yourusername.github.io/img2pdf/articles/university-submissions.html</loc>
-  </url>
-  <url>
-    <loc>https://yourusername.github.io/img2pdf/articles/combine-screenshots.html</loc>
-  </url>
-  <url>
-    <loc>https://yourusername.github.io/img2pdf/articles/best-image-formats.html</loc>
-  </url>
-  <url>
-    <loc>https://yourusername.github.io/img2pdf/articles/how-to-organize-images-before-converting.html</loc>
-  </url>
-  <url>
-    <loc>https://yourusername.github.io/img2pdf/articles/common-pdf-upload-mistakes.html</loc>
-  </url>
-  <url>
-    <loc>https://yourusername.github.io/img2pdf/articles/free-image-to-pdf-website.html</loc>
-  </url>
+
+<url>
+<loc>https://www.img2pdf.online/</loc>
+</url>
+
+<url>
+<loc>https://www.img2pdf.online/about.html</loc>
+</url>
+
+<url>
+<loc>https://www.img2pdf.online/contact.html</loc>
+</url>
+
+<url>
+<loc>https://www.img2pdf.online/faq.html</loc>
+</url>
+
+<url>
+<loc>https://www.img2pdf.online/privacy.html</loc>
+</url>
+
+<url>
+<loc>https://www.img2pdf.online/terms.html</loc>
+</url>
+
+<url>
+<loc>https://www.img2pdf.online/articles/university-submissions.html</loc>
+</url>
+
+<url>
+<loc>https://www.img2pdf.online/articles/combine-screenshots.html</loc>
+</url>
+
+<url>
+<loc>https://www.img2pdf.online/articles/best-image-formats.html</loc>
+</url>
+
+<url>
+<loc>https://www.img2pdf.online/articles/how-to-organize-images-before-converting.html</loc>
+</url>
+
+<url>
+<loc>https://www.img2pdf.online/articles/common-pdf-upload-mistakes.html</loc>
+</url>
+
+<url>
+<loc>https://www.img2pdf.online/articles/free-image-to-pdf-website.html</loc>
+</url>
+
 </urlset>
