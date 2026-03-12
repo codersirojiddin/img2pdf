@@ -116,7 +116,7 @@
       </div>
     </section>
 
-    <section class="container tool-card premium-tool-card tilt-card" id="toolSection" data-reveal="up">
+    <section class="container tool-card premium-tool-card" id="toolSection" data-reveal="up">
       <div class="upload-section">
         <label for="imageInput" class="upload-box premium-upload-box">
           <span class="upload-icon">📁</span>
@@ -373,6 +373,47 @@
   </footer>
 
   <script src="app.js"></script>
+  <div class="scroll-light-wrap" aria-hidden="true">
+  <svg class="scroll-light-svg" viewBox="0 0 1440 2600" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#49d6ff" />
+        <stop offset="50%" stop-color="#5b8cff" />
+        <stop offset="100%" stop-color="#8b5cf6" />
+      </linearGradient>
+      <filter id="softGlow">
+        <feGaussianBlur stdDeviation="7" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+
+    <path
+      id="scrollPathBack"
+      d="M1180 120
+         C1280 250, 1260 430, 1140 560
+         C980 730, 980 900, 1120 1040
+         C1260 1180, 1240 1390, 1060 1540
+         C880 1690, 900 1870, 1080 2020
+         C1240 2155, 1250 2310, 1110 2470"
+      pathLength="1000"
+    />
+
+    <path
+      id="scrollPathGlow"
+      d="M1180 120
+         C1280 250, 1260 430, 1140 560
+         C980 730, 980 900, 1120 1040
+         C1260 1180, 1240 1390, 1060 1540
+         C880 1690, 900 1870, 1080 2020
+         C1240 2155, 1250 2310, 1110 2470"
+      pathLength="1000"
+      filter="url(#softGlow)"
+    />
+  </svg>
+</div>
   <script src="ui.js"></script>
 </body>
 </html>

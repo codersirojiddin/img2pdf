@@ -39,7 +39,7 @@ body.ui-loaded .preloader {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.03;
+  opacity: 0.022;
   background-image:
     radial-gradient(circle at 20% 20%, #fff 0.7px, transparent 0.8px),
     radial-gradient(circle at 80% 30%, #fff 0.7px, transparent 0.8px),
@@ -54,7 +54,7 @@ body.ui-loaded .preloader {
   filter: blur(60px);
   pointer-events: none;
   z-index: 0;
-  opacity: 0.45;
+  opacity: 0.36;
 }
 
 .orb-1 {
@@ -62,7 +62,7 @@ body.ui-loaded .preloader {
   height: 280px;
   top: 90px;
   left: -60px;
-  background: rgba(91, 140, 255, 0.22);
+  background: rgba(91, 140, 255, 0.2);
   animation: orbFloat1 10s ease-in-out infinite;
 }
 
@@ -71,7 +71,7 @@ body.ui-loaded .preloader {
   height: 260px;
   top: 420px;
   right: -40px;
-  background: rgba(73, 214, 255, 0.18);
+  background: rgba(73, 214, 255, 0.14);
   animation: orbFloat2 12s ease-in-out infinite;
 }
 
@@ -80,7 +80,7 @@ body.ui-loaded .preloader {
   height: 220px;
   bottom: 90px;
   left: 35%;
-  background: rgba(139, 92, 246, 0.18);
+  background: rgba(139, 92, 246, 0.14);
   animation: orbFloat3 11s ease-in-out infinite;
 }
 
@@ -155,8 +155,8 @@ body.ui-loaded .preloader {
 }
 
 .site-header.premium-header.scrolled {
-  background: rgba(7, 11, 24, 0.82);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(7, 11, 24, 0.84);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
 }
 
@@ -328,8 +328,8 @@ body.ui-loaded .preloader {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at top right, rgba(91, 140, 255, 0.24), transparent 28%),
-    radial-gradient(circle at bottom left, rgba(73, 214, 255, 0.16), transparent 24%);
+    radial-gradient(circle at top right, rgba(91, 140, 255, 0.22), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(73, 214, 255, 0.14), transparent 24%);
   pointer-events: none;
 }
 
@@ -425,13 +425,21 @@ body.ui-loaded .preloader {
   position: relative;
   background:
     linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.05));
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.1);
   box-shadow: var(--ui-shadow);
   backdrop-filter: blur(16px);
 }
 
 .premium-tool-card {
   overflow: hidden;
+  transition: none !important;
+  transform: none !important;
+}
+
+.premium-tool-card:hover {
+  transform: none !important;
+  box-shadow: var(--ui-shadow) !important;
+  border-color: rgba(255,255,255,0.1) !important;
 }
 
 .premium-tool-card::before,
@@ -441,32 +449,29 @@ body.ui-loaded .preloader {
   inset: 0;
   border-radius: inherit;
   background:
-    linear-gradient(135deg, rgba(255,255,255,0.08), transparent 35%, transparent 60%, rgba(255,255,255,0.04));
+    linear-gradient(135deg, rgba(255,255,255,0.06), transparent 35%, transparent 60%, rgba(255,255,255,0.03));
   pointer-events: none;
 }
 
 .premium-upload-box {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.1);
   background:
     linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  transition: border-color 0.25s ease, background 0.25s ease;
 }
 
 .premium-upload-box:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+  transform: none;
+  box-shadow: none;
+  border-color: rgba(255,255,255,0.14);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
 }
 
 .upload-glow {
-  position: absolute;
-  inset: auto auto -70px -40px;
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(91, 140, 255, 0.35), transparent 68%);
-  filter: blur(24px);
-  pointer-events: none;
+  display: none;
 }
 
 .premium-input-group input,
@@ -545,9 +550,9 @@ body.ui-loaded .preloader {
 
 .premium-grid .premium-card:hover,
 .premium-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(130, 190, 255, 0.28);
-  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.32);
+  transform: translateY(-4px);
+  border-color: rgba(130, 190, 255, 0.22);
+  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.28);
 }
 
 .step-card,
@@ -613,6 +618,40 @@ body.ui-loaded .preloader {
   width: 100%;
 }
 
+/* scroll neon path */
+.scroll-light-wrap {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.scroll-light-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#scrollPathBack {
+  fill: none;
+  stroke: rgba(115, 146, 210, 0.08);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#scrollPathGlow {
+  fill: none;
+  stroke: url(#neonGradient);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.9;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+
 /* reveal */
 [data-reveal] {
   opacity: 0;
@@ -652,7 +691,8 @@ body.ui-loaded .preloader {
     transform: none !important;
   }
 
-  .preloader {
+  .preloader,
+  .scroll-light-wrap {
     display: none !important;
   }
 }
@@ -664,6 +704,10 @@ body.ui-loaded .preloader {
 
   .hero-right {
     order: -1;
+  }
+
+  .scroll-light-wrap {
+    opacity: 0.65;
   }
 }
 
@@ -692,5 +736,9 @@ body.ui-loaded .preloader {
   .mock-paper {
     width: 160px;
     height: 120px;
+  }
+
+  .scroll-light-wrap {
+    display: none;
   }
 }
