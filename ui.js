@@ -3,7 +3,10 @@ const header = document.getElementById("siteHeader");
 const preloader = document.getElementById("preloader");
 const revealItems = document.querySelectorAll("[data-reveal]");
 const tiltCards = document.querySelectorAll(".tilt-card:not(#toolSection)");
-const scrollPathGlow = document.getElementById("scrollPathGlow");
+
+const pagePathSvg = document.getElementById("pagePathSvg");
+const pagePathBase = document.getElementById("pagePathBase");
+const pagePathGlow = document.getElementById("pagePathGlow");
 
 window.addEventListener("load", () => {
   setTimeout(() => {
@@ -11,7 +14,8 @@ window.addEventListener("load", () => {
   }, 350);
 
   revealInitial();
-  updateScrollPath();
+  buildDynamicPath();
+  updatePathProgress();
   updateHeader();
 });
 
@@ -49,25 +53,86 @@ function updateHeader() {
   }
 }
 
-function updateScrollPath() {
-  if (!scrollPathGlow) return;
+function buildDynamicPath() {
+  if (!pagePathSvg || !pagePathBase || !pagePathGlow) return;
 
-  const scrollTop = window.scrollY;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+  const docHeight = Math.max(
+    document.body.scrollHeight,
+    document.documentElement.scrollHeight
+  );
 
-  const pathLength = 1000;
-  const visibleLength = progress * pathLength;
-  const remaining = pathLength - visibleLength;
+  const docWidth = Math.max(window.innerWidth, 1440);
 
-  scrollPathGlow.style.strokeDasharray = `${visibleLength} ${remaining}`;
-  scrollPathGlow.style.strokeDashoffset = pathLength;
+  pagePathSvg.setAttribute("viewBox", `0 0 ${docWidth} ${docHeight}`);
+  pagePathSvg.setAttribute("width", docWidth);
+  pagePathSvg.setAttribute("height", docHeight);
+
+  const sections = [
+    ...document.querySelectorAll("main > section"),
+    document.querySelector("footer")
+  ].filter(Boolean);
+
+  const xRight = Math.min(docWidth - 120, docWidth * 0.86);
+  const xMid = Math.min(docWidth - 260, docWidth * 0.72);
+  const xWide = Math.min(docWidth - 380, docWidth * 0.60);
+
+  let d = `M ${xRight} 120`;
+
+  sections.forEach((section, index) => {
+    const rect = section.getBoundingClientRect();
+    const top = rect.top + window.scrollY;
+    const midY = top + rect.height * 0.5;
+
+    const bendX1 = index % 2 === 0 ? xMid : xWide;
+    const bendX2 = index % 2 === 0 ? xWide : xMid;
+    const endX = index % 2 === 0 ? xRight - 20 : xRight - 70;
+
+    d += ` C ${xRight} ${top + 30}, ${bendX1} ${midY - 80}, ${bendX2} ${midY}`;
+    d += ` S ${xRight} ${midY + 100}, ${endX} ${top + rect.height - 20}`;
+  });
+
+  d += ` C ${xRight - 40} ${docHeight - 220}, ${xRight - 20} ${docHeight - 120}, ${xRight - 80} ${docHeight - 40}`;
+
+  pagePathBase.setAttribute("d", d);
+  pagePathGlow.setAttribute("d", d);
+
+  const totalLength = pagePathGlow.getTotalLength();
+  pagePathGlow.style.strokeDasharray = totalLength;
+  pagePathGlow.style.strokeDashoffset = totalLength;
+}
+
+function updatePathProgress() {
+  if (!pagePathGlow) return;
+
+  const maxScroll =
+    document.documentElement.scrollHeight - window.innerHeight;
+
+  const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+  const totalLength = pagePathGlow.getTotalLength();
+
+  pagePathGlow.style.strokeDashoffset = totalLength * (1 - progress);
+}
+
+function debounce(fn, delay = 120) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), delay);
+  };
 }
 
 window.addEventListener("scroll", () => {
   updateHeader();
-  updateScrollPath();
+  updatePathProgress();
 });
+
+window.addEventListener(
+  "resize",
+  debounce(() => {
+    buildDynamicPath();
+    updatePathProgress();
+  }, 140)
+);
 
 tiltCards.forEach((card) => {
   card.addEventListener("mousemove", (e) => {
