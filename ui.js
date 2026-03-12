@@ -41,6 +41,7 @@ revealItems.forEach((item) => observer.observe(item));
 
 function updateHeader() {
   if (!header) return;
+
   if (window.scrollY > 16) {
     header.classList.add("scrolled");
   } else {
@@ -56,8 +57,11 @@ function updateScrollPath() {
   const progress = docHeight > 0 ? scrollTop / docHeight : 0;
 
   const pathLength = 1000;
-  const offset = pathLength - progress * pathLength;
-  scrollPathGlow.style.strokeDashoffset = offset;
+  const visibleLength = progress * pathLength;
+  const remaining = pathLength - visibleLength;
+
+  scrollPathGlow.style.strokeDasharray = `${visibleLength} ${remaining}`;
+  scrollPathGlow.style.strokeDashoffset = pathLength;
 }
 
 window.addEventListener("scroll", () => {
@@ -76,10 +80,10 @@ tiltCards.forEach((card) => {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const rotateY = ((x - centerX) / centerX) * 4;
-    const rotateX = ((centerY - y) / centerY) * 4;
+    const rotateY = ((x - centerX) / centerX) * 3.2;
+    const rotateX = ((centerY - y) / centerY) * 3.2;
 
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`;
   });
 
   card.addEventListener("mouseleave", () => {

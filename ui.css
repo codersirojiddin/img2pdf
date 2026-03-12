@@ -623,8 +623,9 @@ body.ui-loaded .preloader {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 2;
+  z-index: 0;
   overflow: hidden;
+  opacity: 1;
 }
 
 .scroll-light-svg {
@@ -635,8 +636,8 @@ body.ui-loaded .preloader {
 
 #scrollPathBack {
   fill: none;
-  stroke: rgba(115, 146, 210, 0.08);
-  stroke-width: 2.2;
+  stroke: rgba(120, 170, 255, 0.055);
+  stroke-width: 1.2;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -644,12 +645,26 @@ body.ui-loaded .preloader {
 #scrollPathGlow {
   fill: none;
   stroke: url(#neonGradient);
-  stroke-width: 3;
+  stroke-width: 2.6;
   stroke-linecap: round;
   stroke-linejoin: round;
-  opacity: 0.9;
+  opacity: 0.95;
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
+  filter: drop-shadow(0 0 4px rgba(73, 214, 255, 0.55))
+          drop-shadow(0 0 10px rgba(91, 140, 255, 0.32))
+          drop-shadow(0 0 18px rgba(139, 92, 246, 0.18));
+}
+
+main,
+.site-header,
+.site-footer,
+.container,
+.premium-hero,
+.premium-tool-card,
+.content-section {
+  position: relative;
+  z-index: 2;
 }
 
 /* reveal */
@@ -677,6 +692,69 @@ body.ui-loaded .preloader {
 [data-reveal].revealed {
   opacity: 1;
   transform: translate(0, 0);
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .preloader,
+  .scroll-light-wrap {
+    display: none !important;
+  }
+}
+
+@media (max-width: 980px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-right {
+    order: -1;
+  }
+
+  .scroll-light-wrap {
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 700px) {
+  .premium-hero {
+    padding-top: 44px;
+  }
+
+  .hero-title {
+    font-size: 2.3rem;
+  }
+
+  .hero-mini-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-btn {
+    width: 100%;
+  }
+
+  .mock-paper {
+    width: 160px;
+    height: 120px;
+  }
+
+  .scroll-light-wrap {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
