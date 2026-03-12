@@ -72,26 +72,59 @@ function buildDynamicPath() {
     document.querySelector("footer")
   ].filter(Boolean);
 
-  const xRight = Math.min(docWidth - 120, docWidth * 0.86);
-  const xMid = Math.min(docWidth - 260, docWidth * 0.72);
-  const xWide = Math.min(docWidth - 380, docWidth * 0.60);
+  const rightEdge = docWidth * 0.86;
+  const rightInner = docWidth * 0.78;
+  const centerRight = docWidth * 0.67;
+  const centerLeft = docWidth * 0.36;
+  const leftInner = docWidth * 0.18;
 
-  let d = `M ${xRight} 120`;
+  let d = `M ${rightInner} 120`;
+  let currentX = rightInner;
+  let currentY = 120;
 
   sections.forEach((section, index) => {
     const rect = section.getBoundingClientRect();
     const top = rect.top + window.scrollY;
-    const midY = top + rect.height * 0.5;
+    const height = rect.height;
+    const bottom = top + height;
 
-    const bendX1 = index % 2 === 0 ? xMid : xWide;
-    const bendX2 = index % 2 === 0 ? xWide : xMid;
-    const endX = index % 2 === 0 ? xRight - 20 : xRight - 70;
+    const entryY = top + Math.min(60, height * 0.12);
+    const midY = top + height * 0.45;
+    const exitY = bottom - Math.min(50, height * 0.12);
 
-    d += ` C ${xRight} ${top + 30}, ${bendX1} ${midY - 80}, ${bendX2} ${midY}`;
-    d += ` S ${xRight} ${midY + 100}, ${endX} ${top + rect.height - 20}`;
+    const isWideSweep = index % 3 === 1;
+    const goLeft = index % 2 === 0;
+
+    const sweepX = isWideSweep
+      ? (goLeft ? leftInner : rightEdge)
+      : (goLeft ? centerLeft : centerRight);
+
+    const returnX = goLeft ? centerRight : centerLeft;
+    const endX = goLeft ? rightInner : rightEdge - 40;
+
+    d += ` C ${currentX} ${currentY + 40}, ${currentX} ${entryY - 30}, ${currentX} ${entryY}`;
+
+    d += ` C ${currentX} ${entryY + 20}, ${sweepX} ${entryY + 40}, ${sweepX} ${midY}`;
+
+    d += ` S ${returnX} ${exitY - 40}, ${returnX} ${exitY}`;
+
+    d += ` C ${returnX} ${exitY + 10}, ${endX} ${exitY + 10}, ${endX} ${exitY + 40}`;
+
+    currentX = endX;
+    currentY = exitY + 40;
   });
 
-  d += ` C ${xRight - 40} ${docHeight - 220}, ${xRight - 20} ${docHeight - 120}, ${xRight - 80} ${docHeight - 40}`;
+  const footer = document.querySelector("footer");
+  if (footer) {
+    const rect = footer.getBoundingClientRect();
+    const footerTop = rect.top + window.scrollY;
+    const footerMid = footerTop + rect.height * 0.45;
+
+    d += ` C ${currentX} ${currentY + 40}, ${centerRight} ${footerTop - 30}, ${centerRight} ${footerMid}`;
+    d += ` C ${centerRight} ${footerMid + 30}, ${rightInner} ${footerMid + 20}, ${rightInner} ${footerTop + rect.height - 24}`;
+  } else {
+    d += ` C ${currentX} ${currentY + 40}, ${rightInner} ${docHeight - 160}, ${rightInner} ${docHeight - 40}`;
+  }
 
   pagePathBase.setAttribute("d", d);
   pagePathGlow.setAttribute("d", d);
