@@ -137,9 +137,7 @@ function buildDynamicPath() {
 function updatePathProgress() {
   if (!pagePathGlow) return;
 
-  const maxScroll =
-    document.documentElement.scrollHeight - window.innerHeight;
-
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
   const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
   const totalLength = pagePathGlow.getTotalLength();
 
